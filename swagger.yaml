@@ -15,10 +15,9 @@ tags:
   description: "The content of a joke, hopefully a good one."
   externalDocs:
     description: "Find out more"
-    url: "http://apismadeeasy.cloud"
+    url: "http://localhost:3000/foo"
 schemes:
 - "http"
-- "https"
 security:
   - api-key: []
 paths:
@@ -56,7 +55,8 @@ paths:
         in: "query"
         description: "Target language to translate joke. Options include: 'chinese', 'spanish', 'italian', 'japanese', etc. For more codes, see: https://github.com/matheuss/google-translate-api/blob/master/languages.js"
         required: false
-        type: "string"                
+        type: "string" 
+        x-example: 'OZLuP7UDtkb'               
       responses:
         200:
           description: "Random Joke"
