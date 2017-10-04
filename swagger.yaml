@@ -1,0 +1,123 @@
+swagger: "2.0"
+info:
+  description: "This project aims to provide a comprehensive platform to practice consuming APIs and uncover the great potential that they offer."
+  version: "2.2"
+  title: "API 4 Jokes"
+  contact:
+    email: "carlos.rodriguez.iturria@oracle.com"
+  #license:
+  #  name: "Apache 2.0"
+  #  url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/"
+host: "localhost:3000"
+tags:
+- name: "Jokes"
+  description: "The content of a joke, hopefully a good one."
+  externalDocs:
+    description: "Find out more"
+    url: "http://apismadeeasy.cloud"
+schemes:
+- "http"
+- "https"
+security:
+  - api-key: []
+paths:
+  /jokes:
+    get:
+      tags:
+      - "Jokes"
+      summary: "Return a random joke, hopefully a good one!"
+      description: "Get a random Joke and let's hope it is a good one!"
+      operationId: "getaJoke"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Random Joke"
+          schema:
+            $ref: "#/definitions/Joke"
+            
+  /jokes/{id}/translate:
+    get:
+      tags:
+      - "Jokes"
+      summary: "Return selected joke, in a specific language!"
+      description: "Get a random Joke and let's hope it is a good one!"
+      operationId: "translateaJoke"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id of the Joke to be translated and shared."
+        required: true
+        type: "string"
+      - name: "language"
+        in: "query"
+        description: "Target language to translate joke. Options include: 'chinese', 'spanish', 'italian', 'japanese', etc. For more codes, see: https://github.com/matheuss/google-translate-api/blob/master/languages.js"
+        required: false
+        type: "string"                
+      responses:
+        200:
+          description: "Random Joke"
+          schema:
+            $ref: "#/definitions/Joke"            
+            
+  /jokes/{id}:
+    post:
+      tags:
+      - "Jokes"
+      summary: "Share a joke in multiple languages with a friend!"
+      description: "Share a joke by id with a friend."
+      operationId: "shareaJoke"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id of the Joke to be translated and shared."
+        required: true
+        type: "string"
+      - name: "mobile"
+        in: "query"
+        description: "Mobile number to share this joke with, starting with country code. Example: 61445550505"
+        required: true
+        type: "string"
+      - name: "method"
+        in: "query"
+        description: "Method to send joke. Methods include: sms or voice"
+        required: true
+        type: "string"        
+      - name: "language"
+        in: "query"
+        description: "Target language to translate joke. Options include: 'chinese', 'spanish', 'italian', 'japanese', etc. For more codes, see: https://github.com/matheuss/google-translate-api/blob/master/languages.js"
+        required: false
+        type: "string"                
+      responses:
+        200:
+          description: "The Joke shared with a friend in the selected langauge."
+          schema:
+            $ref: "#/definitions/Joke"            
+
+securityDefinitions:
+  api-key:
+    type: "apiKey"
+    name: "x-app-key"
+    in: "header"
+definitions:
+  Joke:
+    type: "object"
+    required:
+    - "id"
+    - "joke"
+    properties:
+      id:
+        type: "string"
+        example: "123ABC"
+      joke:
+        type: "string"
+        example: "Why did the duck cross the road? To prove he wasn't a chicken!"
+    
+externalDocs:
+  description: "Find out more about Oracle PaaS"
+  url: "http://redthunder.blog"
