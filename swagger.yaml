@@ -8,10 +8,10 @@ info:
   #license:
   #  name: "Apache 2.0"
   #  url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-basePath: "/api/jokes"
-#basePath: "/"
-host: "apip.oracleau.cloud"
-# host: "localhost:3000"
+#basePath: "/api/jokes"
+basePath: "/"
+#host: "apip.oracleau.cloud"
+host: "localhost:3000"
 tags:
 - name: "Jokes"
   description: "The content of a joke, hopefully a good one."
@@ -19,8 +19,8 @@ tags:
     description: "Find out more"
     url: "https://apismadeeasy.oracleau.cloud"
 schemes:
-# - "http"
-- "https"
+- "http"
+#- "https"
 security:
 - api-key: []
 paths:
@@ -124,7 +124,7 @@ definitions:
       joke:
         type: "string"
         example: "Why did the duck cross the road? To prove he wasn't a chicken!"
-    
+
 externalDocs:
   description: "Find out more about Oracle PaaS"
   url: "http://redthunder.blog"
